@@ -5,13 +5,14 @@ Both containers are sharing the same output directory defined by `TEZOS_DATA_DIR
 ## how to run
 - Set environment variable `TEZOS_DATA_DIR` so it points to some existing, possibly empty directory on your local machine.
 ```
-# export TEZOS_DATA_DIR="/tmp/bootstrap"
-# mkdir -p "$TEZOS_DATA_DIR" "$TEZOS_DATA_DIR/tezos-rs-data"
+# echo "TEZOS_DATA_DIR=\"/home/tezos/bootstrap-data\"" > .env
+# export $(cat .env | xargs)
+# sudo rm -rf "$TEZOS_DATA_DIR" && mkdir -p "$TEZOS_DATA_DIR" "$TEZOS_DATA_DIR/tezos-rs-data"
 ``` 
 - Start OCaml tezos node to perform initialization. Wait until the identity and the storage are generated. Then stop the
   the node by pressing `ctrl-c`.
 ```
-# docker-compose -f docker-compose.ocaml.yml up
+# sudo docker-compose -f docker-compose.ocaml.yml up
 alphanet_1  | Current public chain: 2018-11-30T15:30:56Z-alphanet.
 alphanet_1  | Local chain data: 2018-11-30T15:30:56Z-alphanet.
 alphanet_1  | Updating the node configuration...
@@ -31,7 +32,7 @@ ctrl-c
 
 - Now launch the tezos-rs node and wait until you see that block are being applied.
 ```
-# docker-compose -f docker-compose.rust.yml up
+# sudo docker-compose -f docker-compose.rust.yml up
 ..
 tezos-rs-node_1  | 2019-09-30 10:02:20+00:00 INFO [shell::chain_feeder] Applying block BMPtRJqFGQJRTfn8bXQR2grLE1M97XnUmG5vgjHMW7St1Wub7Cd
 tezos-rs-node_1  | 2019-09-30 10:02:23+00:00 INFO [shell::chain_feeder] Applying block BLwKksYwrxt39exDei7yi47h7aMcVY2kZMZhTwEEoSUwToQUiDV
@@ -42,7 +43,7 @@ ctrl-c
 
 ```
 # sudo cp -r "$TEZOS_DATA_DIR/tezos-rs-data/." "$TEZOS_DATA_DIR/data/"
-# docker-compose -f docker-compose.ocaml.yml up
+# sudo docker-compose -f docker-compose.ocaml.yml up
 ```
 
 - Now you should be able to check the updated value of current head.
