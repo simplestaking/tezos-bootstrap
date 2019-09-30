@@ -5,7 +5,7 @@ Both containers are sharing the same output directory defined by `TEZOS_DATA_DIR
 ## how to run
 - Set environment variable `TEZOS_DATA_DIR` so it points to some existing, possibly empty directory on your local machine.
 ```
-# echo "TEZOS_DATA_DIR=\"/home/tezos/bootstrap-data\"" > .env
+# echo "TEZOS_DATA_DIR=/home/tezos/bootstrap-data" > .env
 # export $(cat .env | xargs)
 # sudo rm -rf "$TEZOS_DATA_DIR" && mkdir -p "$TEZOS_DATA_DIR" "$TEZOS_DATA_DIR/tezos-rs-data"
 ``` 
