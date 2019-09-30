@@ -4,3 +4,14 @@ services:
     image: simplestakingcom/tezos-rs-node
     ports:
     - "4927:4927"
+    volumes:
+      - ${TEZOS_DATA_DIR}:/tezos-data
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 2048M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 10
