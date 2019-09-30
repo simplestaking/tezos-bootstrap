@@ -3,6 +3,7 @@ version: "3"
 services:
   alphanet:
     image: tezos/tezos:alphanet
+    user: "0:0"
     command: ["tezos-node"]
     hostname: node
     ports:

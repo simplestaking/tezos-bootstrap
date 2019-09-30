@@ -5,7 +5,7 @@ services:
     ports:
     - "4927:4927"
     volumes:
-      - ${TEZOS_DATA_DIR}:/tezos-data
+      - ${TEZOS_DATA_DIR}/tezos-rs-data:/tezos-data
     deploy:
       resources:
         limits:
