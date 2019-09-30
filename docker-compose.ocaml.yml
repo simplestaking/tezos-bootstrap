@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  alphanet:
+    image: tezos/tezos:alphanet
+    command: ["tezos-node"]
+    hostname: node
+    ports:
+      - "8732:8732"
+      - "9732:9732/udp"
+    volumes:
+      - ${TEZOS_DATA_DIR}:/var/run/tezos/node
+    deploy:
+      resources:
+        limits:
+          cpus: '1'
+          memory: 4096M
+      restart_policy:
+        condition: on-failure
+        delay: 5s
+        max_attempts: 10
