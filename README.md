@@ -7,7 +7,7 @@ Both containers are sharing the same output directory defined by `TEZOS_DATA_DIR
 ```
 # echo "TEZOS_DATA_DIR=/home/tezos/bootstrap-data" > .env
 # export $(cat .env | xargs)
-# sudo rm -rf "$TEZOS_DATA_DIR" && mkdir -p "$TEZOS_DATA_DIR" "$TEZOS_DATA_DIR/tezos-rs-data"
+# sudo rm -rf "$TEZOS_DATA_DIR" && mkdir -p "$TEZOS_DATA_DIR" "$TEZOS_DATA_DIR/tezos-rs-data" && sudo docker-compose -f docker-compose.ocaml.yml down && sudo docker-compose -f docker-compose.rust.yml down
 ``` 
 - Start OCaml tezos node to perform initialization. Wait until the identity and the storage are generated. Then stop the
   the node by pressing `ctrl-c`.
